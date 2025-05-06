@@ -11,6 +11,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import model.Biblioteka;
+import model.BibliotekaClan;
 import repository.BibliotekaService;
 
 @Path("/biblioteka")
@@ -33,4 +34,15 @@ public class BibliotekaResource {
 	    public List<Biblioteka> getAll() {
 	        return bibliotekaService.getAll();
 	    }
+	    
+	    
+	    @POST
+	 	@Consumes(MediaType.APPLICATION_JSON)
+	 	@Path("createBibliotekaClan")
+	 	public Response getTime(BibliotekaClan b) {
+	 
+	    	BibliotekaClan biblioteka =  bibliotekaService.createBibliotekaClan(b);
+	 		
+	 		return Response.ok().entity(biblioteka).build();
+	 	}
 }

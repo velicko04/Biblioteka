@@ -27,4 +27,6 @@ public class AutorResource {
     public List<Autor> getAll() {
         return autorService.getAll();
     }
+    
+   
     }

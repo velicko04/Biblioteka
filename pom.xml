@@ -18,11 +18,17 @@
     </properties>
 
     <dependencyManagement>
+		
         <dependencies>
+			<dependency>
+  <groupId>io.quarkus</groupId>
+  <artifactId>quarkus-smallrye-openapi</artifactId>
+</dependency>
+
 			<dependency>
     <groupId>io.quarkus</groupId>
     <artifactId>quarkus-jdbc-postgresql</artifactId>
-    <version>3.2.3.Final</version> <!-- ili verzija koju koristiš -->
+    <version>3.2.3.Final</version>
     <scope>runtime</scope>
 </dependency>
             <dependency>
@@ -82,6 +88,15 @@
             <artifactId>rest-assured</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+    <groupId>io.quarkus</groupId>
+    <artifactId>quarkus-rest-client</artifactId>
+</dependency>
+<dependency>
+    <groupId>io.quarkus</groupId>
+    <artifactId>quarkus-rest-client-jackson</artifactId>
+</dependency>
+
     </dependencies>
 
     <build>

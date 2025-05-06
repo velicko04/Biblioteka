@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
@@ -24,50 +25,52 @@ public class BibliotekaClan {
 	initialValue = 1)
 	@GeneratedValue(generator = "bibliotekaClanSeq")
 	private Long id;
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(
-	    name = "biblioteka_clan",
-	    joinColumns = @JoinColumn(name = "clan_id"),
-	    inverseJoinColumns = @JoinColumn(name = "biblioteka_id")
-	)
-	private Set<Biblioteka> biblioteke;
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(
-		    name = "biblioteka_clan",
-		    joinColumns = @JoinColumn(name = "biblioteka_id"),
-		    inverseJoinColumns = @JoinColumn(name = "clan_id")
-		)
-	private Set<Clan> clanovi;
 	
-	public BibliotekaClan(Set<Biblioteka> biblioteke, Set<Clan> clanovi) {
+	
+	@ManyToOne(cascade =  CascadeType.ALL)
+ 	Biblioteka biblioteka;
+	
+	@ManyToOne(cascade =  CascadeType.ALL)
+ 	Clan clan;
+	
+	
+	public BibliotekaClan(Biblioteka biblioteka, Clan clan) {
 		super();
-		this.biblioteke = biblioteke;
-		this.clanovi = clanovi;
+		this.biblioteka = biblioteka;
+		this.clan = clan;
 	}
 	
 	public BibliotekaClan() {
 		super();
 	}
 
-	public Set<Biblioteka> getBiblioteke() {
-		return biblioteke;
-	}
-
-	public void setBiblioteke(Set<Biblioteka> biblioteke) {
-		this.biblioteke = biblioteke;
-	}
-
-	public Set<Clan> getClanovi() {
-		return clanovi;
-	}
-
-	public void setClanovi(Set<Clan> clanovi) {
-		this.clanovi = clanovi;
-	}
+	public Long getId() {
+ 		return id;
+ 	}
+ 
+ 	public void setId(Long id) {
+ 		this.id = id;
+ 	}
+ 
+ 	public Biblioteka getBiblioteka() {
+ 		return biblioteka;
+ 	}
+ 
+ 	public void setBiblioteka(Biblioteka biblioteka) {
+ 		this.biblioteka = biblioteka;
+ 	}
+ 
+ 	public Clan getClan() {
+ 		return clan;
+ 	}
+ 
+ 	public void setPredmet(Clan clan) {
+ 		this.clan = clan;
+ 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(biblioteke, clanovi, id);
+		return Objects.hash(biblioteka, clan, id);
 	}
 
 	@Override
@@ -79,13 +82,13 @@ public class BibliotekaClan {
 		if (getClass() != obj.getClass())
 			return false;
 		BibliotekaClan other = (BibliotekaClan) obj;
-		return Objects.equals(biblioteke, other.biblioteke) && Objects.equals(clanovi, other.clanovi)
+		return Objects.equals(biblioteka, other.biblioteka) && Objects.equals(clan, other.clan)
 				&& Objects.equals(id, other.id);
 	}
 
 	@Override
 	public String toString() {
-		return "BibliotekaClan [id=" + id + ", biblioteke=" + biblioteke + ", clanovi=" + clanovi + "]";
+		return "BibliotekaClan [id=" + id + ", biblioteka=" + biblioteka + ", clan=" + clan + "]";
 	}
 	
 	
