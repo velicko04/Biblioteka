@@ -2,10 +2,14 @@ package kolokvijum_opro;
 
 import java.util.List;
 
+import jakarta.persistence.OneToMany;
+
 public class WeatherResponse {
 	public String temperature;
 	public String wind;
 	public String description;
+	
+	
 	public List<Forecast> forecast;
 	
 	public WeatherResponse(String temperature, String wind, String description, List<Forecast> forecast) {
@@ -51,6 +55,7 @@ public class WeatherResponse {
 	public WeatherResponse() {
 		super();
 	}
-	
+
+
 	
 }
